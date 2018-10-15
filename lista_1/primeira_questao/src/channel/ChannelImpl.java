@@ -3,9 +3,6 @@ package channel;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import javax.naming.LimitExceededException;
-import javax.naming.SizeLimitExceededException;
-
 public class ChannelImpl implements Channel {
 
 	private Queue<String> channel;
