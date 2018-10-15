@@ -37,15 +37,17 @@ public class ChannelImpl implements Channel {
 		
 	}
 	
-	private boolean isFull() {
+	@Override
+	public boolean isFull() {
 		return this.getLimit() == this.channel.size();
 	}
 	
-	private boolean isEmpty() {
+	@Override
+	public boolean isEmpty() {
 		return this.channel.isEmpty();
 	}
 	
-	public int getLimit() {
+	private int getLimit() {
 		return this.limit;
 	}
 	
