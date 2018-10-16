@@ -22,7 +22,7 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) throws InterruptedException {
-		int limite = 5;
+		
 		Channel channel = new ChannelImpl(5);
 		Sender sender = new Sender(channel);
 		Receiver receiver = new Receiver(channel);
