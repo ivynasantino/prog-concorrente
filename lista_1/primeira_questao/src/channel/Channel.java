@@ -10,4 +10,6 @@ public interface Channel {
 	
 	public boolean isEmpty();
 	
+	public int getLimit();
+	
 }

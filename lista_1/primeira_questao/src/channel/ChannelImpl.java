@@ -47,7 +47,7 @@ public class ChannelImpl implements Channel {
 		return this.channel.isEmpty();
 	}
 	
-	private int getLimit() {
+	public int getLimit() {
 		return this.limit;
 	}
 	
