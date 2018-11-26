@@ -4,12 +4,12 @@ import api.Api;
 
 public class Mirror implements Runnable {
 	
-	Api api = new Api();
-	
+	private Api api; 
 	private String serverName;
 	
-	public Mirror(String serverName) {
+	public Mirror(Api api, String serverName) {
 		this.setServerName(serverName);
+		this.api = api;
 	}
 
 	public String getServerName() {
@@ -27,6 +27,7 @@ public class Mirror implements Runnable {
 	@Override
 	public void run() {
 		System.out.println(this.reliableRequest());
+		System.exit(0);
 	}
 	
 }

@@ -1,10 +1,12 @@
 package api;
 
+
 public class Api {
 	
-	private int id = 0;
+	private int id;
 	
-	public String request(String serverName) {
-		return serverName + " FOI O PRIMEIRO. SE NO CONSOLE TIVER OUTRO EM CIMA EH PQ ELE N FOI O PRIMEIRO. O PRIMEIRO VAI SER O PRIMEIRO";			
+	public synchronized String request(String serverName) {
+		return serverName + " foi o " + ++id + "º a responder.";	
 	}
+	
 }	
