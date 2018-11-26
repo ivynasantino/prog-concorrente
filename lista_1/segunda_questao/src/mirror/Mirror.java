@@ -27,7 +27,6 @@ public class Mirror implements Runnable {
 	@Override
 	public void run() {
 		System.out.println(this.reliableRequest());
-		System.exit(0);
 	}
 	
 }

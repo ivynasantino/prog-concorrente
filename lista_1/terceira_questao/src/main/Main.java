@@ -23,8 +23,6 @@ public class Main {
 		t0.join();
 		t1.join();
 		t2.join();
-		
 	}
-	
 	
 }
