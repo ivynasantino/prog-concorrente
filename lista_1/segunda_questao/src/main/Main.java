@@ -1,12 +1,17 @@
 package main;
 
 import api.Api;
+import channel.Channel;
+import channel.ChannelImpl;
 import mirror.Mirror;
 
 public class Main {
 
 	public static void main(String[] args) throws InterruptedException {
-		Api api = new Api();
+		
+		Channel channel = new ChannelImpl(1);
+		
+		Api api = new Api(channel);
 		
 		Mirror mirrorCom = new Mirror(api, "mirror1.com");
 		Mirror mirrorBr = new Mirror(api, "mirror2.br");
