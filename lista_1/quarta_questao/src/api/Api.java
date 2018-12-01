@@ -2,11 +2,17 @@ package api;
 
 public class Api {
 	
-	private int id;
+	public String primeiro = "";
 	
-	public synchronized String request(String serverName) throws InterruptedException {
-		int soneca = (int) (Math.random() * 2499 + 1);
-		Thread.sleep(soneca);
-		return serverName + " foi o " + ++id + "º a responder.";	
+	public String request(String serverName) {
+		synchronized (primeiro) {
+			this.primeiro = serverName;
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				
+			}
+			return this.primeiro;
+		}	
 	}
 }
