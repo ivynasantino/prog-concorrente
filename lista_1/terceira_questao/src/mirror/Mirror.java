@@ -26,7 +26,7 @@ public class Mirror implements Runnable{
 		long fim = System.currentTimeMillis();
 		long duracao = fim - inicio;
 		if (duracao > 2000)
-			return "Erro: " + serverName + " demorou muito para responder (" + duracao / 1000.0 + "s)";
+			return "Erro: " + serverName + " demorou muito para responder";
 		return resposta;
 	}
 
@@ -34,10 +34,6 @@ public class Mirror implements Runnable{
 	public void run() {		
 		try {
 			System.out.println(this.reliableRequest());
-			
-			// p testar se muda o mirror descomentar aqui
-//			while (true)
-//				System.out.println(this.reliableRequest());
 		} catch (InterruptedException e) {
 		}
 	}

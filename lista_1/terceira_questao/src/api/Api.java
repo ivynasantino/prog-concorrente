@@ -1,23 +1,17 @@
 package api;
 
-import channel.Channel;
-
 public class Api {
 	
-	private Channel channel;
-	
-	public Api(Channel channel) {
-		this.channel = channel;
-	}
+	public String primeiro = "";
 	
 	public synchronized String request(String serverName) throws InterruptedException {
-		int soneca = (int) (Math.random() * 2499 + 1);
-		try {
-			this.channel.putMessage(serverName);
+		synchronized (primeiro) {
+			int soneca = (int) (Math.random() * 2499 + 1);
 			Thread.sleep(soneca);
-		} catch (UnsupportedOperationException e) {
-			System.exit(0);
+			if (this.primeiro.equals("")) {
+				this.primeiro = serverName;
+			}
+			return primeiro + " respondeu em " + soneca / 1000.0 + "s";
 		}
-		return this.channel.getFirst() + " respondeu em " + soneca / 1000.0 + "s";
 	}
 }

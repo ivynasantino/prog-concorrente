@@ -1,16 +1,12 @@
 package main;
 
 import api.Api;
-import channel.Channel;
-import channel.ChannelImpl;
 import mirror.Mirror;
 
 public class Main {
-
+	
 	public static void main(String[] args) throws InterruptedException {
-		Channel channel = new ChannelImpl(1);
-		
-		Api api = new Api(channel);
+		Api api = new Api();
 		
 		Mirror mirrorCom = new Mirror(api, "mirror1.com");
 		Mirror mirrorBr = new Mirror(api, "mirror2.br");
@@ -27,6 +23,7 @@ public class Main {
 		t0.join();
 		t1.join();
 		t2.join();
+		
 	}
 	
 }
