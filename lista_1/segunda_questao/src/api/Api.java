@@ -1,23 +1,16 @@
 package api;
 
-import channel.Channel;
-
 public class Api {
 	
-	private Channel channel;
-	private int id;
+	public String primeiro = "";
 	
-	public Api(Channel channel) {
-		this.channel = channel;
+	public Api() {
 	}
 	
-	public synchronized String request(String serverName) {
-		try {
-			this.channel.putMessage(serverName);
-		} catch (UnsupportedOperationException e) {
-			System.exit(0);
-		}
-		return "O primeiro mirror a responder foi " + this.channel.getFirst();	
+	public String request(String serverName) {
+		synchronized (primeiro) {
+			this.primeiro = serverName;
+			return this.primeiro;
+		}	
 	}
-	
 }	

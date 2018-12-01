@@ -2,31 +2,29 @@ package mirror;
 
 import api.Api;
 
-public class Mirror implements Runnable {
+public class Mirror {
 	
-	private Api api; 
-	private String serverName;
-	
-	public Mirror(Api api, String serverName) {
-		this.setServerName(serverName);
-		this.api = api;
+	public String reliableRequest() throws InterruptedException {
+		
+		Api api = new Api();
+		
+		Server com = new Server("mirror1.com", api);
+		Server br = new Server("mirror2.br", api);
+		Server edu = new Server("mirror3.edu", api);
+		
+		Thread t1 = new Thread(com);
+		Thread t2 = new Thread(br);
+		Thread t3 = new Thread(edu);
+		
+		t1.start();
+		t2.start();
+		t3.start();
+		
+		t1.join();
+		t2.join();
+		t3.join();
+		
+		return api.primeiro;
 	}
 
-	public String getServerName() {
-		return this.serverName;
-	}
-
-	public void setServerName(String serverName) {
-		this.serverName = serverName;
-	}
-	
-	public String reliableRequest() {
-		return api.request(serverName);
-	}
-
-	@Override
-	public void run() {
-		System.out.println(this.reliableRequest());
-	}
-	
 }
