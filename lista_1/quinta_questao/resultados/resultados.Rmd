@@ -1,0 +1,96 @@
+---
+title: "Resultados"
+author: "Ivyna Santino e Valter Lucena"
+date: "3 de dezembro de 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+Ambos os experimentos foram realizados utilizandos duas threads: uma thread produtora, que adiciona valores às coleções, e uma thread consumidora, que consulta os valores das coleções.
+
+### Experimento 1
+
+```{r}
+concurrentHashMap <- read.csv("concurrentHashMap.csv")
+synchronizedHashMap <- read.csv("SynchronizedHashMap.csv")
+
+comparativo <- rbind(concurrentHashMap, synchronizedHashMap)
+```
+
+```{r}
+comparativo %>%
+  ggplot(aes(x = execucao,
+             y = duracao,
+             colour = colecao)) +
+  geom_line() +
+  facet_grid(~ operacao)
+```
+
+Como podemos observar no gráfico, as operações de get e put para as coleções possuem, na maioria dos casos, duração parecida, com a coleção ConcurrentHashMap tendo os maiores picos de duração.
+
+Comparando em termos de média, temos:
+
+```{r}
+comparativo %>% 
+  group_by(operacao, colecao) %>% 
+  summarise(media = mean(duracao)) %>% 
+  ggplot(aes(x = operacao,
+             y = media,
+             colour = colecao)) +
+  geom_point(size = 2) +
+  geom_segment(aes(x = operacao,
+                   xend = operacao,
+                   y = 0,
+                   yend = media)) +
+  guides(colour = FALSE) +
+  facet_grid(~colecao)
+```
+
+Vemos, então, que a coleção ConcurrentHashMap tem uma média de duração maior para realizar as operações de get e put, e que a coleção SynchronizedHashMap realiza essas operações mais rapidamente.
+
+### Experimento 2
+
+```{r}
+copyOnWrite <- read.csv("CopyOnWriteArrayList.csv")
+synchList <- read.csv("SynchronizedList.csv")
+
+comparativoList <- rbind(copyOnWrite, synchList)
+```
+
+```{r}
+comparativoList %>%
+  ggplot(aes(x = execucao,
+             y = duracao,
+             colour = colecao)) +
+  geom_line() +
+  facet_grid(~ operacao)
+```
+
+Pelo gráfico é possível observar que o desempenho das coleções é parecido para a operação get, com a coleção CopyOnWriteArrayList tendo maiores picos de duração. Já para a operação put, além de possuir maiores picos, a coleção CopyOnWriteArrayList foi menos eficiente, já a duração de cada execução foi sempre maior que a SynchronizedList.
+
+Comparando, também, em termos de média, temos:
+
+```{r}
+comparativoList %>% 
+  group_by(operacao, colecao) %>% 
+  summarise(media = mean(duracao)) %>% 
+  ggplot(aes(x = operacao,
+             y = media,
+             colour = colecao)) +
+  geom_point(size = 2) +
+  geom_segment(aes(x = operacao,
+                   xend = operacao,
+                   y = 0,
+                   yend = media)) +
+  guides(colour = FALSE) +
+  facet_grid(~colecao)
+```
+
+Utilizando a média da duração das operações como critério de eficiência, observamos que, para a operação put, a coleção CopyOnWriteArrayList possui uma menor média que a coleção SynchronizedList, mesmo que essa diferença seja mínima. Já para a operação put, a coleção SynchronizedList possui uma menor média de duração que a coleção CopyOnWriteArrayList, com uma diferença maior entre os dois valores.
