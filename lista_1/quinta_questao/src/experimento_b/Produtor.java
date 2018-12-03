@@ -34,7 +34,6 @@ public class Produtor implements Runnable {
 			long fim = System.nanoTime();
 			double duracao = (fim - inicio) / 1000000.0;
 			tempCopyWrite.add(duracao);
-			
 		}
 	}
 	
@@ -45,7 +44,6 @@ public class Produtor implements Runnable {
 			long fim = System.nanoTime();
 			double duracao = (fim - inicio) / 1000000.0;
 			tempSyncList.add(duracao);
-			
 		}
 	}
 	
@@ -54,7 +52,7 @@ public class Produtor implements Runnable {
 	}
 	
 	public List<Double> getCopyWritePut() {
-		return this.tempSyncList;
+		return this.tempCopyWrite;
 	}
 
 }

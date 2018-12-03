@@ -12,11 +12,11 @@ public class Main {
 	public static void main(String[] args) throws IOException, InterruptedException {
 		CopyOnWriteArrayList<Integer> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
 		FileWriter copyOnWrite = new FileWriter("CopyOnWriteArrayList.csv", true);
-		copyOnWrite.write("duracao, operacao, colecao" + System.lineSeparator());
+		copyOnWrite.write("execucao, duracao, operacao, colecao" + System.lineSeparator());
 		
 		List<Integer> synchList = Collections.synchronizedList(new ArrayList<Integer>());
 		FileWriter synchListFile = new FileWriter("SynchronizedList.csv", true);
-		synchListFile.write("duracao, operacao, colecao" + System.lineSeparator());	
+		synchListFile.write("execucao, duracao, operacao, colecao" + System.lineSeparator());	
 
 		
 		Produtor produtor = new Produtor(copyOnWriteArrayList, synchList);
@@ -63,7 +63,7 @@ public class Main {
 		cont = 0;
 		for (Double duracao : getSyncListGet) {
 			cont = cont + 1;
-			String linha = duracao + ",get," + "SynchronizedList" + System.lineSeparator();
+			String linha = cont + "," + duracao + ",get," + "SynchronizedList" + System.lineSeparator();
 			synchListFile.write(linha);
 		}		
 		

@@ -33,7 +33,6 @@ public class Produtor implements Runnable {
 			long fim = System.nanoTime();
 			double duracao =  (fim - inicio) / 1000000.0;
 			tempAddConcMap.add(duracao);
-			
 		}
 	}
 	
@@ -44,7 +43,6 @@ public class Produtor implements Runnable {
 			long fim = System.nanoTime();
 			double duracao =  (fim - inicio) / 1000000.0;
 			tempAddSyncMap.add(duracao);
-			
 		}
 	}
 	
@@ -53,7 +51,7 @@ public class Produtor implements Runnable {
 	}
 	
 	public List<Double> getSyncAdd() {
-		return this.tempAddConcMap;
+		return this.tempAddSyncMap;
 	}
 	
 }

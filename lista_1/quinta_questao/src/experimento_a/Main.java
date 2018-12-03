@@ -64,7 +64,7 @@ public class Main {
 		cont = 0;
 		for (Double duracao : getSyncGet) {
 			cont = cont + 1;
-			String linha = cont + "," + duracao + ",get" + "SynchronizedHashMap" + System.lineSeparator();
+			String linha = cont + "," + duracao + ",get," + "SynchronizedHashMap" + System.lineSeparator();
 			syncMapFile.write(linha);
 		}		
 		
