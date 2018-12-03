@@ -38,14 +38,14 @@ public class Main {
 		int cont = 0;
 		for (Double duracao : putConAdd) {
 			cont = cont + 1;
-			String linha = cont + "," + duracao + ",put," + System.lineSeparator();
+			String linha = cont + "," + duracao + ",put," + "concurrentHashMap" + System.lineSeparator();
 			concMapFile.write(linha);
 		}
 		
 		cont = 0;
 		for (Double duracao : getConGet) {
 			cont = cont + 1;
-			String linha = cont + "," + duracao + ",get," + System.lineSeparator();
+			String linha = cont + "," + duracao + ",get" + "concurrentHashMap" + System.lineSeparator();
 			concMapFile.write(linha);
 		}
 		
@@ -57,14 +57,14 @@ public class Main {
 		cont = 0;
 		for (Double duracao : putSyncAdd) {
 			cont = cont + 1;
-			String linha = cont + "," + duracao + ",put," + System.lineSeparator();
+			String linha = cont + "," + duracao + ",put" + "SynchronizedHashMap" + System.lineSeparator();
 			syncMapFile.write(linha);
 		}
 		
 		cont = 0;
 		for (Double duracao : getSyncGet) {
 			cont = cont + 1;
-			String linha = duracao + ",get," + System.lineSeparator();
+			String linha = cont + "," + duracao + ",get" + "SynchronizedHashMap" + System.lineSeparator();
 			syncMapFile.write(linha);
 		}		
 		

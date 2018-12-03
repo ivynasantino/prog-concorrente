@@ -32,7 +32,7 @@ public class Consumidor implements Runnable {
 			long fim = System.nanoTime();
 			double duracao =  (fim - inicio) / 1000000.0;
 			tempGetConcMap.add(duracao);
-			System.out.println("GetConc " + i + " " + duracao);
+			
 		}		
 	}
 	
@@ -43,7 +43,7 @@ public class Consumidor implements Runnable {
 			long fim = System.nanoTime();
 			double duracao =  (fim - inicio) / 1000000.0;
 			tempGetSyncMap.add(duracao);
-			System.out.println("GetSync " + i + " " + duracao);
+			
 		}
 	}
 	
