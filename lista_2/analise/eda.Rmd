@@ -30,7 +30,20 @@ java.go %>%
        y = "Bytes")
 ```
 
-Como podemos observar com o gráfico acima, a linguagem Java possui um consumo de memória bem mais elevado que a linguagem Go. Podemos ver mais claramente esses resultados com a sumarização dos dados a seguir:
+Como podemos ver, a diferença dos valores do consumo estão bem altas, então seria melhor estabilizarmos as escalas e melhorar a visualização dos dados. Para isso, podemos utilizar o log10 nos bytes e obtemos o resultado abaixo:
+
+```{r, warning=FALSE, message=FALSE}
+java.go %>% 
+  ggplot(aes(x = execucao,
+             y = log10(bytes),
+             color = linguagem)) +
+  geom_line() +
+  labs(title = "Consumo de memória de programas equivalentes: Java vs Go",
+       x = "Número da execução",
+       y = "Bytes")
+```
+
+Como podemos observar com os gráficos acima, a linguagem Java possui um consumo de memória bem mais elevado que a linguagem Go. Podemos ver mais claramente esses resultados com a sumarização dos dados a seguir:
 
 ```{r, warning=FALSE, message=FALSE}
 java.go %>% 
@@ -41,5 +54,5 @@ java.go %>%
             min.bytes = min(bytes))
 ```
 
-Assim como dito anteriormente, podemos ver em números que os resultados de consumo são muito mais elevados para Java, como podemos observar acima, o consumo mínimo de Java é de 943760 bytes e Go com 32 bytes, uma diferença enorme de consumo.
+Assim como dito anteriormente, podemos ver em números que os resultados de consumo são muito mais elevados para Java, como podemos observar acima, por exemplo, o consumo mínimo de Java é de 943760 bytes e Go com 32 bytes, uma diferença enorme de consumo. Dessa maneira, podemos concluir que a linguagem Golang consume menos mémoria do que a Java.
 
