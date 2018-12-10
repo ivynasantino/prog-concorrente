@@ -17,7 +17,7 @@ java <- read.csv("java.csv")
 java.go <- rbind(golang, java)
 ```
 
-Para o experimento da questão 4, guardamos o valor do consumo de memória de um mesmo programa em duas linguagens distintas, sendo elas Java e Golang, em 2 csvs.
+Para o experimento da questão 4, guardamos o valor do consumo de memória de um mesmo programa em duas linguagens distintas, sendo elas Java(utilizando threads) e Golang(utilizando goroutine), em dois csvs.
 
 ```{r, warning=FALSE, message=FALSE}
 java.go %>% 
@@ -43,7 +43,7 @@ java.go %>%
        y = "Bytes")
 ```
 
-Como podemos observar com os gráficos acima, a linguagem Java possui um consumo de memória bem mais elevado que a linguagem Go. Podemos ver mais claramente esses resultados com a sumarização dos dados a seguir:
+Como podemos observar com os gráficos acima, a utilização de threads em Java possui um consumo de memória bem mais elevado que se utilizarmos goroutines em Go. Podemos ver mais claramente esses resultados com a sumarização dos dados a seguir:
 
 ```{r, warning=FALSE, message=FALSE}
 java.go %>% 
@@ -54,5 +54,5 @@ java.go %>%
             min.bytes = min(bytes))
 ```
 
-Assim como dito anteriormente, podemos ver em números que os resultados de consumo são muito mais elevados para Java, como podemos observar acima, por exemplo, o consumo mínimo de Java é de 943760 bytes e Go com 32 bytes, uma diferença enorme de consumo. Dessa maneira, podemos concluir que a linguagem Golang consume menos mémoria do que a Java.
+Assim como dito anteriormente, podemos ver em números que os resultados de consumo são muito mais elevados para Java, como podemos observar acima, por exemplo, o consumo mínimo com thread é de 943760 bytes e com goroutines é de 32 bytes, uma diferença enorme de consumo. Dessa maneira, podemos concluir que a estratégia de goroutines consume menos mémoria do que utilizar threads.
 
